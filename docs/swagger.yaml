@@ -109,7 +109,7 @@ definitions:
       username:
         type: string
     type: object
-host: verified-gorilla-yearly.ngrok-free.app
+host: newterminal.onrender.com
 info:
   contact:
     email: support@swagger.io

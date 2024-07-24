@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "verified-gorilla-yearly.ngrok-free.app",
+    "host": "newterminal.onrender.com",
     "basePath": "/api",
     "paths": {
         "/auth/login": {
