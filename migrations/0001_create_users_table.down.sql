@@ -1,10 +1,1 @@
-CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    inn VARCHAR(12) NOT NULL,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    is_active BOOLEAN DEFAULT true,
-    is_admin BOOLEAN DEFAULT false,
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
-    updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
-);
+DROP TABLE IF EXISTS users;
