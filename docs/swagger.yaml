@@ -109,7 +109,7 @@ definitions:
       username:
         type: string
     type: object
-host: newterminal.onrender.com
+host: txkm-vipos.uz
 info:
   contact:
     email: support@swagger.io

@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "newterminal.onrender.com",
+    "host": "txkm-vipos.uz",
     "basePath": "/api",
     "paths": {
         "/auth/login": {
