@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -39,12 +40,15 @@ func (h *FiscalHandler) Routes() chi.Router {
 // @Router /fiscal [get]
 // @Security BearerAuth
 func (h *FiscalHandler) GetAllFiscalModules(w http.ResponseWriter, r *http.Request) {
+	log.Println("Fetching all fiscal modules")
 	fiscalModules, err := h.service.GetAll(r.Context())
 	if err != nil {
+		log.Printf("Error retrieving fiscal modules: %v", err)
 		utils.RespondWithError(w, http.StatusInternalServerError, "Could not retrieve fiscal modules")
 		return
 	}
 	utils.RespondWithJSON(w, http.StatusOK, fiscalModules)
+	log.Println("Successfully fetched all fiscal modules")
 }
 
 // GetFiscalModuleByID обрабатывает запрос на получение фискального модуля по ID
@@ -61,17 +65,21 @@ func (h *FiscalHandler) GetAllFiscalModules(w http.ResponseWriter, r *http.Reque
 func (h *FiscalHandler) GetFiscalModuleByID(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
+		log.Printf("Invalid fiscal module ID: %v", err)
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid fiscal module ID")
 		return
 	}
 
+	log.Printf("Fetching fiscal module by ID: %d", id)
 	module, err := h.service.GetByID(r.Context(), id)
 	if err != nil {
+		log.Printf("Error retrieving fiscal module by ID %d: %v", id, err)
 		utils.RespondWithError(w, http.StatusNotFound, "Fiscal module not found")
 		return
 	}
 
 	utils.RespondWithJSON(w, http.StatusOK, module)
+	log.Printf("Successfully fetched fiscal module by ID: %d", id)
 }
 
 // CreateFiscalModule обрабатывает запрос на создание нового фискального модуля
@@ -90,6 +98,7 @@ func (h *FiscalHandler) CreateFiscalModule(w http.ResponseWriter, r *http.Reques
 	var moduleReq models.FiscalModuleCreateRequest
 	err := json.NewDecoder(r.Body).Decode(&moduleReq)
 	if err != nil {
+		log.Printf("Invalid request payload: %v", err)
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
@@ -100,13 +109,16 @@ func (h *FiscalHandler) CreateFiscalModule(w http.ResponseWriter, r *http.Reques
 		UserID:        moduleReq.UserID,
 	}
 
+	log.Println("Creating new fiscal module")
 	err = h.service.Create(r.Context(), module)
 	if err != nil {
+		log.Printf("Error creating fiscal module: %v", err)
 		utils.RespondWithError(w, http.StatusInternalServerError, "Could not create fiscal module")
 		return
 	}
 
 	utils.RespondWithJSON(w, http.StatusCreated, map[string]string{"message": "Fiscal module created"})
+	log.Println("Successfully created new fiscal module")
 }
 
 // UpdateFiscalModule обрабатывает запрос на обновление фискального модуля
@@ -125,6 +137,7 @@ func (h *FiscalHandler) CreateFiscalModule(w http.ResponseWriter, r *http.Reques
 func (h *FiscalHandler) UpdateFiscalModule(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
+		log.Printf("Invalid fiscal module ID: %v", err)
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid fiscal module ID")
 		return
 	}
@@ -132,6 +145,7 @@ func (h *FiscalHandler) UpdateFiscalModule(w http.ResponseWriter, r *http.Reques
 	var moduleReq models.FiscalModuleUpdateRequest
 	err = json.NewDecoder(r.Body).Decode(&moduleReq)
 	if err != nil {
+		log.Printf("Invalid request payload: %v", err)
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
@@ -143,13 +157,16 @@ func (h *FiscalHandler) UpdateFiscalModule(w http.ResponseWriter, r *http.Reques
 		UserID:        moduleReq.UserID,
 	}
 
+	log.Printf("Updating fiscal module with ID: %d", id)
 	err = h.service.Update(r.Context(), module)
 	if err != nil {
+		log.Printf("Error updating fiscal module with ID %d: %v", id, err)
 		utils.RespondWithError(w, http.StatusInternalServerError, "Could not update fiscal module")
 		return
 	}
 
 	utils.RespondWithJSON(w, http.StatusOK, map[string]string{"message": "Fiscal module updated"})
+	log.Printf("Successfully updated fiscal module with ID: %d", id)
 }
 
 // DeleteFiscalModule обрабатывает запрос на удаление фискального модуля
@@ -166,15 +183,19 @@ func (h *FiscalHandler) UpdateFiscalModule(w http.ResponseWriter, r *http.Reques
 func (h *FiscalHandler) DeleteFiscalModule(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
+		log.Printf("Invalid fiscal module ID: %v", err)
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid fiscal module ID")
 		return
 	}
 
+	log.Printf("Deleting fiscal module with ID: %d", id)
 	err = h.service.Delete(r.Context(), id)
 	if err != nil {
+		log.Printf("Error deleting fiscal module with ID %d: %v", id, err)
 		utils.RespondWithError(w, http.StatusInternalServerError, "Could not delete fiscal module")
 		return
 	}
 
 	utils.RespondWithJSON(w, http.StatusOK, map[string]string{"message": "Fiscal module deleted"})
+	log.Printf("Successfully deleted fiscal module with ID: %d", id)
 }
