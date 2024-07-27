@@ -15,6 +15,7 @@ type Terminal struct {
 	DatabaseUpdateDate time.Time `json:"database_update_date"`
 	Status             string    `json:"status"`
 	PartnerID          int       `json:"partner_id"`
+	FreeRecordBalance  int       `json:"free_record_balance"`
 }
 
 // TerminalCreateRequest представляет данные для создания торговой точки
@@ -43,6 +44,7 @@ type TerminalUpdateRequest struct {
 	DatabaseUpdateDate time.Time `json:"database_update_date,omitempty"`
 	Status             string    `json:"status,omitempty"`
 	UserID             int       `json:"user_id"`
+	FreeRecordBalance  int       `json:"free_record_balance"`
 }
 
 // TerminalResponse представляет данные торговой точки для ответа
@@ -58,4 +60,5 @@ type TerminalResponse struct {
 	DatabaseUpdateDate time.Time `json:"database_update_date"`
 	Status             string    `json:"status"`
 	UserID             int       `json:"user_id"`
+	FreeRecordBalance  int       `json:"free_record_balance"`
 }

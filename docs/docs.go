@@ -991,6 +991,9 @@ const docTemplate = `{
                 "database_update_date": {
                     "type": "string"
                 },
+                "free_record_balance": {
+                    "type": "integer"
+                },
                 "id": {
                     "type": "integer"
                 },
