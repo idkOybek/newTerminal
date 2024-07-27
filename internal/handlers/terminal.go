@@ -76,7 +76,7 @@ func (h *TerminalHandler) GetTerminalByID(w http.ResponseWriter, r *http.Request
 // @Failure 500 {object} map[string]string
 // @Router /terminal [post]
 func (h *TerminalHandler) CreateTerminal(w http.ResponseWriter, r *http.Request) {
-	var terminal models.Terminal
+	var terminal models.TerminalCreateRequest
 	if err := json.NewDecoder(r.Body).Decode(&terminal); err != nil {
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		logger.ErrorLogger.Printf("Error decoding terminal creation request: %v", err)

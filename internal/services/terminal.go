@@ -38,7 +38,7 @@ func (s *TerminalService) GetTerminalByID(ctx context.Context, id int) (*models.
 	return terminal, nil
 }
 
-func (s *TerminalService) CreateTerminal(ctx context.Context, terminal *models.Terminal) error {
+func (s *TerminalService) CreateTerminal(ctx context.Context, terminal *models.TerminalCreateRequest) error {
 	if err := s.repo.Create(ctx, terminal); err != nil {
 		logger.ErrorLogger.Printf("Error creating terminal in repository: %v", err)
 		return err

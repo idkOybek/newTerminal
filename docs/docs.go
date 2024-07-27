@@ -1006,11 +1006,11 @@ const docTemplate = `{
                 "module_number": {
                     "type": "string"
                 },
-                "partner_id": {
-                    "type": "integer"
-                },
                 "status": {
                     "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
                 }
             }
         },
