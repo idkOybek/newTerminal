@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS terminals (
     assembly_number VARCHAR(255) UNIQUE NOT NULL,
     last_request_date TIMESTAMP WITHOUT TIME ZONE,
     database_update_date TIMESTAMP WITHOUT TIME ZONE,
+    free_record_balance INTEGER NOT NULL,
     status BOOLEAN DEFAULT true,
     user_id INTEGER REFERENCES users(id),
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),

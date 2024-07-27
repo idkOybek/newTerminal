@@ -14,7 +14,7 @@ type Terminal struct {
 	LastRequestDate    time.Time `json:"last_request_date"`
 	DatabaseUpdateDate time.Time `json:"database_update_date"`
 	Status             string    `json:"status"`
-	PartnerID          int       `json:"partner_id"`
+	UserID             int       `json:"user_id"`
 	FreeRecordBalance  int       `json:"free_record_balance"`
 }
 
@@ -26,8 +26,6 @@ type TerminalCreateRequest struct {
 	CashRegisterNumber string    `json:"cash_register_number"`
 	ModuleNumber       string    `json:"module_number"`
 	AssemblyNumber     string    `json:"assembly_number"`
-	LastRequestDate    time.Time `json:"last_request_date"`
-	DatabaseUpdateDate time.Time `json:"database_update_date"`
 	Status             string    `json:"status"`
 	UserID             int       `json:"user_id"`
 }
