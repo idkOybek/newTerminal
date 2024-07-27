@@ -48,7 +48,7 @@ func (r *TerminalRepository) GetByID(ctx context.Context, id int) (*models.Termi
 	return &terminal, nil
 }
 
-func (r *TerminalRepository) Create(ctx context.Context, terminal *models.Terminal) error {
+func (r *TerminalRepository) Create(ctx context.Context, terminal *models.TerminalCreateRequest) error {
 	query := "INSERT INTO terminals (inn, company_name, address, cash_register_number, module_number, assembly_number, status, user_id, free_record_balance) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id"
 	_, err := r.db.ExecContext(ctx, query, terminal.INN, terminal.CompanyName, terminal.Address, terminal.CashRegisterNumber, terminal.ModuleNumber, terminal.AssemblyNumber, terminal.Status, terminal.UserID)
 	return err
