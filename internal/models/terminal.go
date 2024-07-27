@@ -20,14 +20,15 @@ type Terminal struct {
 
 // TerminalCreateRequest представляет данные для создания торговой точки
 type TerminalCreateRequest struct {
-	INN                string    `json:"inn"`
-	CompanyName        string    `json:"company_name"`
-	Address            string    `json:"address"`
-	CashRegisterNumber string    `json:"cash_register_number"`
-	ModuleNumber       string    `json:"module_number"`
-	AssemblyNumber     string    `json:"assembly_number"`
-	Status             string    `json:"status"`
-	UserID             int       `json:"user_id"`
+	INN                string `json:"inn"`
+	CompanyName        string `json:"company_name"`
+	Address            string `json:"address"`
+	CashRegisterNumber string `json:"cash_register_number"`
+	ModuleNumber       string `json:"module_number"`
+	AssemblyNumber     string `json:"assembly_number"`
+	Status             string `json:"status"`
+	UserID             int    `json:"user_id"`
+	FreeRecordBalance  int    `json:"free_record_balance"`
 }
 
 // TerminalUpdateRequest представляет данные для обновления торговой точки
